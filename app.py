@@ -12,6 +12,7 @@ from datetime import datetime
 import tkinter as tk
 from tkinter import filedialog
 import matplotlib.pyplot as plt
+import torch.nn.functional as F
 
 # Import models & utils
 from model import MedicalVAE, MedicalGANGenerator, MedicalGANDiscriminator, MedicalTransformer, vae_loss_function

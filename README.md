@@ -1,25 +1,53 @@
 # 🩻 NeuroScan Pro: Multi-Model Anomaly Detection
 
-> **Advanced Unsupervised Anomaly Detection for Medical Imaging using VAEs, GANs, and Vision Transformers.**
+> **Next-Gen Unsupervised Pathology Detection using Generative AI (VAE, GAN, ViT).**
 
-NeuroScan Pro is a state-of-the-art benchmarking workbench for medical AI. It uses **One-Class Classification** to detect pathologies (like Pneumonia) by training strictly on healthy tissue.
-
-Unlike standard classifiers, NeuroScan Pro learns the "manifold of health." When presented with disease, the models fail to reconstruct the anatomy correctly, creating a "Difference Map" that highlights the tumor or infection.
+NeuroScan Pro is a research workbench designed to tackle the "Black Box" problem in medical diagnosis. Instead of training models to recognize specific diseases (which requires massive labeled datasets), NeuroScan Pro learns the **"Manifold of Health."** By understanding healthy anatomy at a pixel level, it can detect **any** anomaly—known or unknown—by flagging deviations from the norm.
 
 ---
 
-## 🌟 New Pro Features
+## ❓ The Challenge: Why NeuroScan?
 
-* **Three Architectures:**
-    * **ConvVAE (Variational Autoencoder):** The classic probabilistic baseline.
-    * **GAN (Generative Adversarial Network):** Uses adversarial training to generate sharper, more realistic healthy tissue reconstructions.
-    * **ViT (Vision Transformer):** Uses Self-Attention mechanisms to capture long-range dependencies in anatomical structures.
-* **⚔️ Benchmark Suite:**
-    * **Visual Comparison:** See how VAE, GAN, and ViT reconstruct the same X-Ray side-by-side.
-    * **Anomaly Localization:** Compare "Difference Maps" to see which model best highlights the disease.
-    * **Metric Table:** Auto-calculates **Accuracy** and **F1-Score** for all loaded models on the Test set.
-* **Persistent History:** Training loss graphs are saved in memory, allowing you to train Model A, then Model B, and compare their learning curves on the same plot.
-* **Auto-Save & Load:** Models are automatically timestamped and saved. The "Diagnostics" tab lets you mix and match versions (e.g., "Load VAE from yesterday vs. GAN from today").
+### 1. The Data Scarcity Problem
+In medical imaging, "Normal" data is abundant, but "Pathological" (Disease) data is rare, expensive to label, and strictly regulated (HIPAA/GDPR). Traditional Supervised Learning requires thousands of labeled examples for *every* specific disease (Pneumonia, TB, COVID-19). If a new virus emerges, traditional models fail until new datasets are curated.
+
+### 2. The "Black Swan" Failure
+Supervised classifiers (e.g., ResNet50 trained on Pneumonia) are binary: they output `0` or `1`. They cannot detect *novel* anomalies. If a patient has a rare lung tumor but the model was only trained on Pneumonia, it will likely misclassify the patient as "Healthy" because it doesn't know what a tumor looks like.
+
+### 3. Lack of Explainability
+Standard "Black Box" AI gives a probability score (e.g., "98% Pneumonia") but rarely tells the doctor *where* to look. This lack of localization makes clinicians hesitant to trust AI predictions.
+
+---
+
+## 💡 The Solution: Generative Anomaly Detection
+
+NeuroScan Pro flips the paradigm using **Unsupervised One-Class Classification**:
+
+1.  **Train on "Normal" Only:** We feed the models (VAE, GAN, ViT) *only* healthy Chest X-Rays. They learn to reconstruct healthy anatomy perfectly.
+2.  **Test on Everything:** When a patient scan is input:
+    * If **Healthy**: The model reconstructs it accurately (Low Error).
+    * If **Diseased**: The model *fails* to reconstruct the lesion (High Error) because it has never seen a disease before.
+3.  **The "Difference Map" Breakthrough:** By subtracting the **Reconstruction** from the **Original Input**, we generate a pixel-perfect **Heatmap** that highlights exactly *where* the anomaly is. This provides instant visual explainability for doctors.
+
+### 🚀 Key Breakthroughs & Significance
+* **Zero-Shot Detection:** Can theoretically detect *any* lung pathology (Pneumonia, COVID, Tumors) without ever training on them.
+* **Data Privacy:** Models can be trained on purely healthy data, which is less sensitive and easier to acquire.
+* **Architecture Benchmarking:** A first-of-its-kind workbench to compare **Probabilistic (VAE)** vs. **Adversarial (GAN)** vs. **Attention-based (ViT)** approaches for medical reconstruction side-by-side.
+
+---
+
+## 🌟 Key Features
+
+* **Multi-Model Engine:**
+    * **ConvVAE (Variational Autoencoder):** Probabilistic baseline for smooth latent representations.
+    * **GAN (Generative Adversarial Network):** Uses adversarial loss to generate sharper, high-frequency details.
+    * **ViT (Vision Transformer):** Leverages Self-Attention to understand global anatomical structure.
+* **🏆 Live Leaderboard:**
+    * Real-time tracking of **Accuracy**, **F1-Score**, and **Parameter Count**.
+    * Instant comparison of training stability via **Log-Scale Loss Curves**.
+* **🔎 Comparative Diagnostics:**
+    * **Visual Inspection:** Randomly loads Normal vs. Pneumonia samples to visually compare Difference Maps across architectures.
+    * **Metric Benchmarking:** Auto-calculates performance stats on the Test Set.
 
 ---
 

@@ -106,6 +106,18 @@ streamlit run app.py
 | **GAN** | Generator fights Discriminator. | Sharp, realistic details. | Unstable training (Mode Collapse). |
 | **ViT** | Splits image into 16x16 patches + Self-Attention. | Understands global structure. | Data hungry; heavy compute. |
 
+### Main Architecture
+<img width="1737" height="1104" alt="Architecture" src="https://github.com/user-attachments/assets/6a10e15f-3943-492c-8492-ec5c6413e9b2" />
+
+#### VAE
+<img width="1737" height="1104" alt="VAE" src="https://github.com/user-attachments/assets/f47c3e7b-d8dd-4d4f-8328-ad53902fbbc4" />
+
+#### GAN
+<img width="1737" height="1104" alt="GAN" src="https://github.com/user-attachments/assets/463168d9-f5fd-446b-81ab-13f79ca7d2fc" />
+
+#### ViT
+<img width="1737" height="1104" alt="VIT" src="https://github.com/user-attachments/assets/716d97e5-74b5-4f8c-ab5d-27cf167b2b50" />
+
 ---
 
 ## 📂 Project Structure

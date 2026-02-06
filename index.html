@@ -8,38 +8,49 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/black.min.css" id="theme">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/monokai.min.css">
 
     <style>
-        /* --- CUSTOM THEME --- */
+        /* --- CUSTOM THEME FIXES --- */
         :root {
             --primary: #42affa;
             --secondary: #ff7f50;
-            --bg-dark: #1e1e1e;
-            --text-light: #ffffff;
         }
 
-        .reveal h1, .reveal h2, .reveal h3 { text-transform: none; color: var(--text-light); }
+        /* Fix font sizes to prevent overflow */
+        .reveal { font-size: 32px; }
+        .reveal h1 { font-size: 2.5em; text-transform: none; color: #fff; }
+        .reveal h2 { font-size: 1.8em; text-transform: none; color: #fff; margin-bottom: 30px; }
+        .reveal h3 { font-size: 1.3em; text-transform: none; color: #ccc; }
+        
+        /* Highlight colors */
         .highlight { color: var(--primary); font-weight: bold; }
         .accent { color: var(--secondary); font-weight: bold; }
-        
-        /* Layouts */
-        .cols { display: flex; justify-content: space-between; align-items: flex-start; gap: 40px; }
+
+        /* Layout Columns */
+        .cols { 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            gap: 20px; 
+            height: 100%;
+        }
         .col { flex: 1; text-align: left; }
         
-        /* Architecture Diagram Containers */
+        /* Diagrams - Auto fit within slide */
         .diagram-box {
             background: rgba(255, 255, 255, 0.05);
             border: 2px solid var(--primary);
             border-radius: 15px;
-            padding: 20px;
-            margin: 20px auto;
-            width: 90%;
+            padding: 10px;
+            margin: 10px auto;
+            width: 100%;
+            max-height: 50vh; /* Prevent vertical overflow */
+            display: flex;
+            justify-content: center;
         }
 
-        /* SVG Styles */
-        svg { width: 100%; height: auto; font-family: sans-serif; }
+        svg { width: 100%; height: 100%; max-height: 400px; font-family: sans-serif; }
         .node-rect { fill: #333; stroke: #fff; stroke-width: 2px; }
         .node-accent { fill: rgba(66, 175, 250, 0.2); stroke: var(--primary); stroke-width: 2px; }
         .arrow-line { stroke: var(--primary); stroke-width: 3px; marker-end: url(#arrow); }
@@ -47,9 +58,9 @@
         .small-label { fill: #bbb; font-size: 11px; text-anchor: middle; }
 
         /* Tables */
-        table { font-size: 0.6em !important; width: 100%; border-collapse: collapse; }
-        th { border-bottom: 2px solid var(--primary) !important; color: var(--primary); padding: 10px; }
-        td { border-bottom: 1px solid #555 !important; padding: 10px; }
+        table { font-size: 0.8em !important; width: 100%; border-collapse: collapse; }
+        th { border-bottom: 2px solid var(--primary) !important; color: var(--primary); padding: 8px; }
+        td { border-bottom: 1px solid #555 !important; padding: 8px; }
     </style>
 </head>
 <body>
@@ -59,11 +70,11 @@
             <section>
                 <h1>🩻 NeuroScan Pro</h1>
                 <h3>Multi-Model Anomaly Detection</h3>
-                <p>Advanced Unsupervised Pathology Detection using <br> <span class="highlight">VAE, GAN, and Vision Transformers</span></p>
+                <p>Unsupervised Pathology Detection using <br> <span class="highlight">VAE, GAN, and Vision Transformers</span></p>
                 
-                <div style="margin-top: 50px; padding: 20px; border-top: 1px solid #555;">
-                    <p style="font-size: 0.7em; text-transform: uppercase; color: #888; letter-spacing: 2px;">Project Created By</p>
-                    <p style="font-size: 0.9em;">Harshal Zope &bull; Anirudha Deshmukh &bull; Kiran Gavali</p>
+                <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #555;">
+                    <p style="font-size: 0.6em; text-transform: uppercase; color: #888; letter-spacing: 2px; margin-bottom: 10px;">Project Created By</p>
+                    <p style="font-size: 0.9em; margin: 0;">Harshal Zope &bull; Anirudha Deshmukh &bull; Kiran Gavali</p>
                 </div>
             </section>
 
@@ -72,16 +83,16 @@
                 <div class="cols">
                     <div class="col">
                         <ul>
-                            <li class="fragment custom blur"><strong>Data Scarcity:</strong> "Normal" X-rays are abundant, but disease data is rare and expensive to label.</li>
-                            <li class="fragment custom blur"><strong>The "Black Swan" Failure:</strong> Standard AI classifiers only find diseases they were trained on. They miss <em>novel</em> pathologies.</li>
-                            <li class="fragment custom blur"><strong>Lack of Explainability:</strong> Doctors don't trust "Black Box" scores. They need to see <em>where</em> the problem is.</li>
+                            <li class="fragment custom blur"><strong>Data Scarcity:</strong> "Normal" X-rays are abundant, but disease data is rare and expensive.</li>
+                            <li class="fragment custom blur"><strong>"Black Swan" Failure:</strong> Standard AI misses <em>novel</em> pathologies it hasn't seen before.</li>
+                            <li class="fragment custom blur"><strong>No Explainability:</strong> Doctors don't trust scores. They need to see <em>where</em> the problem is.</li>
                         </ul>
                     </div>
                     <div class="col">
                         <div class="diagram-box">
                             <svg viewBox="0 0 300 200">
-                                <circle cx="150" cy="100" r="80" fill="none" stroke="#555" stroke-dasharray="5,5" />
-                                <text x="150" y="100" class="text-label" fill="#888">Unknown Disease?</text>
+                                <circle cx="150" cy="100" r="70" fill="none" stroke="#555" stroke-dasharray="5,5" />
+                                <text x="150" y="100" class="text-label" fill="#888">Unknown Disease</text>
                                 <text x="150" y="130" class="text-label" fill="#ff5555" font-weight="bold">AI Fails</text>
                             </svg>
                         </div>
@@ -91,24 +102,22 @@
 
             <section>
                 <h2>💡 The Solution: One-Class Learning</h2>
-                <p>Instead of training on diseases, we train <span class="highlight">only on Healthy Anatomy</span>.</p>
+                <p>Train <span class="highlight">only on Healthy Anatomy</span>.</p>
                 
-                <div class="cols">
-                    <div class="col" style="font-size: 0.8em;">
-                        <ol>
-                            <li class="fragment">Model learns the "Manifold of Health".</li>
-                            <li class="fragment">It reconstructs healthy lungs perfectly.</li>
-                            <li class="fragment">When it sees a disease, it <span class="accent">fails to reconstruct it</span>.</li>
-                            <li class="fragment"><strong>Input - Output = Difference Map (The Lesion)</strong></li>
-                        </ol>
-                    </div>
+                <div style="font-size: 0.9em; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px;">
+                    <ol>
+                        <li class="fragment">Model learns the "Manifold of Health".</li>
+                        <li class="fragment">It reconstructs healthy lungs perfectly.</li>
+                        <li class="fragment">When it sees a disease, it <span class="accent">fails to reconstruct it</span>.</li>
+                        <li class="fragment" style="margin-top: 10px;"><strong>Input - Output = <span class="highlight">Difference Map (The Lesion)</span></strong></li>
+                    </ol>
                 </div>
             </section>
 
             <section>
                 <h2>🏗️ System Architecture</h2>
-                <div class="diagram-box">
-                    <svg viewBox="0 0 800 250">
+                <div class="diagram-box r-stretch">
+                    <svg viewBox="0 0 800 250" preserveAspectRatio="xMidYMid meet">
                         <defs>
                             <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
                                 <path d="M0,0 L0,6 L9,3 z" fill="#42affa" />
@@ -122,8 +131,8 @@
                         <line x1="160" y1="130" x2="240" y2="130" class="arrow-line"/>
 
                         <rect x="250" y="50" width="300" height="160" rx="15" class="node-accent"/>
-                        <text x="400" y="80" class="text-label" fill="#42affa" font-weight="bold">AI Core (VAE / GAN / ViT)</text>
-                        <text x="400" y="120" class="text-label">1. Encode to Latent Space</text>
+                        <text x="400" y="80" class="text-label" fill="#42affa" font-weight="bold">AI Core (VAE / GAN)</text>
+                        <text x="400" y="120" class="text-label">1. Encode to Latent</text>
                         <text x="400" y="145" class="text-label">2. Reconstruct "Healthy"</text>
 
                         <line x1="560" y1="130" x2="640" y2="130" class="arrow-line"/>
@@ -132,83 +141,69 @@
                         <text x="700" y="120" class="text-label">Reconstruction</text>
                         <text x="700" y="140" class="small-label">(Disease Removed)</text>
 
-                        <text x="400" y="230" class="text-label" fill="#ff7f50" font-size="16">Difference = Anomaly Localization</text>
+                        <text x="400" y="235" class="text-label" fill="#ff7f50" font-size="16">Difference = Anomaly Localization</text>
                     </svg>
                 </div>
             </section>
 
             <section>
-                <h2>🧠 Algorithms: VAE & GAN</h2>
+                <h2>🧠 Algorithms</h2>
                 <div class="cols">
                     <div class="col">
-                        <h3>VAE (Probabilistic)</h3>
-                        <svg viewBox="0 0 300 150" style="background:rgba(255,255,255,0.05); border-radius:10px;">
-                            <rect x="20" y="50" width="60" height="50" class="node-rect" />
-                            <text x="50" y="75" class="small-label">Encoder</text>
-                            
-                            <circle cx="150" cy="75" r="30" fill="#444" stroke="#42affa" stroke-width="2"/>
-                            <text x="150" y="75" class="small-label" fill="#fff">Gaussian z</text>
-                            
-                            <rect x="220" y="50" width="60" height="50" class="node-rect" />
-                            <text x="250" y="75" class="small-label">Decoder</text>
-
-                            <line x1="80" y1="75" x2="120" y2="75" stroke="#fff" stroke-width="2" />
-                            <line x1="180" y1="75" x2="220" y2="75" stroke="#fff" stroke-width="2" />
+                        <h4 style="color:#42affa;">VAE</h4>
+                        <p style="font-size:0.6em;">Probabilistic compression. Learns a smooth latent distribution.</p>
+                        <svg viewBox="0 0 200 100" style="background:rgba(255,255,255,0.05); border-radius:5px;">
+                            <rect x="10" y="30" width="40" height="40" class="node-rect" />
+                            <circle cx="100" cy="50" r="20" fill="#444" stroke="#42affa" stroke-width="2"/>
+                            <rect x="150" y="30" width="40" height="40" class="node-rect" />
+                            <line x1="50" y1="50" x2="80" y2="50" stroke="#fff" />
+                            <line x1="120" y1="50" x2="150" y2="50" stroke="#fff" />
                         </svg>
-                        <p style="font-size:0.5em; margin-top:10px;">Learns a smooth latent distribution.</p>
                     </div>
                     <div class="col">
-                        <h3>GAN (Adversarial)</h3>
-                        <svg viewBox="0 0 300 150" style="background:rgba(255,255,255,0.05); border-radius:10px;">
-                            <rect x="20" y="40" width="80" height="40" class="node-accent" />
-                            <text x="60" y="60" class="small-label">Generator</text>
-                            
-                            <rect x="200" y="40" width="80" height="40" class="node-rect" style="stroke:#ff7f50;" />
-                            <text x="240" y="60" class="small-label">Discriminator</text>
-
-                            <path d="M 100 60 L 190 60" stroke="#fff" stroke-width="2" marker-end="url(#arrow)" />
-                            <text x="150" y="50" class="small-label">Fakes</text>
-                            
-                            <path d="M 240 80 Q 240 120 60 80" fill="none" stroke="#ff7f50" stroke-width="2" stroke-dasharray="4,4" />
-                            <text x="150" y="110" class="small-label" fill="#ff7f50">Adversarial Loss</text>
+                        <h4 style="color:#ff7f50;">GAN</h4>
+                        <p style="font-size:0.6em;">Adversarial training. Generator fights Discriminator for sharpness.</p>
+                        <svg viewBox="0 0 200 100" style="background:rgba(255,255,255,0.05); border-radius:5px;">
+                            <rect x="20" y="20" width="50" height="30" class="node-accent" />
+                            <rect x="120" y="20" width="50" height="30" class="node-rect" stroke="#ff7f50" />
+                            <path d="M 70 35 L 120 35" stroke="#fff" marker-end="url(#arrow)" />
+                            <path d="M 145 50 Q 145 80 45 50" fill="none" stroke="#ff7f50" stroke-dasharray="3,3" />
                         </svg>
-                        <p style="font-size:0.5em; margin-top:10px;">Generator fights Discriminator for sharp details.</p>
                     </div>
                 </div>
             </section>
 
             <section>
                 <h2>🧠 Vision Transformer (ViT)</h2>
-                <div class="diagram-box">
-                    <svg viewBox="0 0 700 200">
-                        <rect x="20" y="50" width="80" height="80" class="node-rect" />
-                        <text x="60" y="90" class="small-label">Input Img</text>
+                <div class="diagram-box r-stretch">
+                    <svg viewBox="0 0 600 150">
+                        <rect x="20" y="40" width="60" height="60" class="node-rect" />
+                        <text x="50" y="70" class="small-label">Image</text>
 
-                        <g transform="translate(130, 50)">
-                            <rect x="0" y="0" width="20" height="20" fill="#444" stroke="#fff"/>
-                            <rect x="25" y="0" width="20" height="20" fill="#444" stroke="#fff"/>
-                            <rect x="0" y="25" width="20" height="20" fill="#444" stroke="#fff"/>
-                            <rect x="25" y="25" width="20" height="20" fill="#444" stroke="#fff"/>
-                            <text x="22" y="65" class="small-label">16x16 Patches</text>
+                        <g transform="translate(100, 40)">
+                            <rect x="0" y="0" width="15" height="15" fill="#444" stroke="#fff"/>
+                            <rect x="20" y="0" width="15" height="15" fill="#444" stroke="#fff"/>
+                            <rect x="0" y="20" width="15" height="15" fill="#444" stroke="#fff"/>
+                            <rect x="20" y="20" width="15" height="15" fill="#444" stroke="#fff"/>
                         </g>
 
-                        <line x1="200" y1="90" x2="250" y2="90" class="arrow-line" />
+                        <line x1="160" y1="70" x2="200" y2="70" class="arrow-line" />
 
-                        <rect x="260" y="30" width="180" height="120" class="node-accent" />
-                        <text x="350" y="80" class="text-label">Self-Attention</text>
-                        <text x="350" y="110" class="small-label">(Global Context)</text>
+                        <rect x="210" y="20" width="180" height="100" class="node-accent" />
+                        <text x="300" y="60" class="text-label">Self-Attention</text>
+                        <text x="300" y="85" class="small-label">(Global Context)</text>
 
-                        <line x1="450" y1="90" x2="500" y2="90" class="arrow-line" />
+                        <line x1="400" y1="70" x2="440" y2="70" class="arrow-line" />
 
-                        <rect x="510" y="50" width="80" height="80" class="node-rect" />
-                        <text x="550" y="90" class="small-label">Recon</text>
+                        <rect x="450" y="40" width="60" height="60" class="node-rect" />
+                        <text x="480" y="70" class="small-label">Recon</text>
                     </svg>
                 </div>
-                <p>Unlike CNNs, ViT splits images into patches and learns global relationships.</p>
+                <p style="font-size:0.7em;">Splits image into patches. Learns global structural relationships.</p>
             </section>
 
             <section>
-                <h2>📊 Model Comparison</h2>
+                <h2>📊 Model Benchmarks</h2>
                 <table>
                     <thead>
                         <tr>
@@ -222,43 +217,42 @@
                         <tr>
                             <td class="highlight">VAE</td>
                             <td>Probabilistic</td>
-                            <td>Stable training. Good baseline.</td>
-                            <td>Blurry images.</td>
+                            <td>Stable training.</td>
+                            <td>Blurry output.</td>
                         </tr>
                         <tr>
-                            <td class="highlight">GAN</td>
+                            <td class="accent">GAN</td>
                             <td>Adversarial</td>
-                            <td>Sharp details. High contrast maps.</td>
-                            <td>Unstable (Mode Collapse).</td>
+                            <td>Sharp details.</td>
+                            <td>Unstable.</td>
                         </tr>
                         <tr>
                             <td class="highlight">ViT</td>
                             <td>Attention</td>
-                            <td>Global context awareness.</td>
-                            <td>Data hungry; blocky artifacts.</td>
+                            <td>Global context.</td>
+                            <td>Data hungry.</td>
                         </tr>
                     </tbody>
                 </table>
             </section>
 
             <section>
-                <h2>🛠️ Tech Stack & Features</h2>
+                <h2>🛠️ Tech Stack</h2>
                 <div class="cols">
                     <div class="col">
-                        <h4 class="highlight">The Stack</h4>
-                        <ul style="font-size: 0.8em;">
-                            <li><strong>Core:</strong> PyTorch, TorchVision</li>
-                            <li><strong>UI:</strong> Streamlit</li>
-                            <li><strong>Viz:</strong> Matplotlib, Seaborn</li>
-                            <li><strong>Data:</strong> Kaggle Chest X-Ray (5,856 images)</li>
+                        <h4 class="highlight">Core</h4>
+                        <ul style="font-size: 0.7em;">
+                            <li><strong>PyTorch:</strong> DL Framework</li>
+                            <li><strong>TorchVision:</strong> Transforms</li>
+                            <li><strong>Streamlit:</strong> UI Dashboard</li>
                         </ul>
                     </div>
                     <div class="col">
-                        <h4 class="highlight">Key Features</h4>
-                        <ul style="font-size: 0.8em;">
-                            <li>🏆 <strong>Live Leaderboard:</strong> Tracks F1 & Accuracy.</li>
-                            <li>🔎 <strong>Visual Inspector:</strong> Side-by-side reconstruction comparison.</li>
-                            <li>📈 <strong>Log-Scale Metrics:</strong> Compare GAN/VAE loss convergence.</li>
+                        <h4 class="highlight">Features</h4>
+                        <ul style="font-size: 0.7em;">
+                            <li>🏆 <strong>Live Leaderboard</strong></li>
+                            <li>🔎 <strong>Visual Difference Maps</strong></li>
+                            <li>📈 <strong>Log-Scale Metrics</strong></li>
                         </ul>
                     </div>
                 </div>
@@ -266,10 +260,9 @@
 
             <section>
                 <h1>Thank You!</h1>
-                <h3 class="accent">NeuroScan Pro</h3>
-                <p>Bringing Explainable, Generative AI to Medical Diagnostics.</p>
-                <div style="margin-top: 50px; border: 1px solid #42affa; padding: 20px; border-radius: 10px; display: inline-block;">
-                    <p style="margin:0;"><small>View Project on GitHub:</small></p>
+                <p>Bringing Explainable AI to Diagnostics.</p>
+                <div style="margin-top: 40px; border: 1px solid #42affa; padding: 15px; border-radius: 10px; display: inline-block;">
+                    <p style="margin:0; font-size: 0.6em; color: #aaa;">View Code on GitHub</p>
                     <a href="https://github.com/hzindia/NeuroScan" style="color: #42affa; font-weight: bold;">github.com/hzindia/NeuroScan</a>
                 </div>
             </section>
@@ -282,8 +275,13 @@
     <script>
         Reveal.initialize({
             hash: true,
-            slideNumber: 'c/t',
-            transition: 'convex', 
+            slideNumber: true,
+            center: true,
+            width: 960,
+            height: 700,
+            margin: 0.04, // Reduces standard margin to prevent cutoff
+            minScale: 0.2,
+            maxScale: 2.0,
             plugins: [ RevealHighlight ]
         });
     </script>

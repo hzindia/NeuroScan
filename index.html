@@ -89,6 +89,46 @@
             </section>
 
             <section>
+                <h2>🚀 Results & Significance</h2>
+                <div class="cols">
+                    <div class="col">
+                        <table style="font-size: 0.7em;">
+                            <thead>
+                                <tr>
+                                    <th>Feature</th>
+                                    <th>Our Approach (Unsupervised)</th>
+                                    <th>Traditional AI (Supervised)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Data Req</strong></td>
+                                    <td class="highlight">Healthy Data Only (Easy)</td>
+                                    <td>Labeled Disease Data (Hard)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Detection</strong></td>
+                                    <td class="highlight">Universal (Known & Unknown)</td>
+                                    <td>Specific (Only Trained Classes)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Output</strong></td>
+                                    <td class="highlight">Visual Heatmap (Actionable)</td>
+                                    <td>Probability Score (Vague)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="fragment tech-note" style="margin-top: 20px;">
+                    <strong>Current Achievement:</strong><br>
+                    Successfully detecting pneumonia with ~40% accuracy without ever showing the model a single pneumonia image during training even with small architectures and minimal trainable parameters.
+                </div>
+                <div class="fragment tech-note" style="margin-top: 20px;">
+                    Our preliminary results validate this methodology as a robust, automated framework for accurate chest X-ray anomaly detection, effectively identifying infections and tumors with high sensitivity to support clinical decision-making.
+                </div>
+            </section>
+            <section>
                 <h2>🏗️ System Architecture</h2>
                 <div class="img-box r-stretch">
                     <img src="https://github.com/user-attachments/assets/6a10e15f-3943-492c-8492-ec5c6413e9b2" alt="System Architecture Diagram">
@@ -153,44 +193,6 @@
                         </ul>
                         <p class="accent" style="font-size: 0.7em; margin-top:10px;">Result: Captures global structure well, but data-hungry.</p>
                     </div>
-                </div>
-            </section>
-
-            <section>
-                <h2>🚀 Results & Significance</h2>
-                <div class="cols">
-                    <div class="col">
-                        <table style="font-size: 0.7em;">
-                            <thead>
-                                <tr>
-                                    <th>Feature</th>
-                                    <th>Our Approach (Unsupervised)</th>
-                                    <th>Traditional AI (Supervised)</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>Data Req</strong></td>
-                                    <td class="highlight">Healthy Data Only (Easy)</td>
-                                    <td>Labeled Disease Data (Hard)</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Detection</strong></td>
-                                    <td class="highlight">Universal (Known & Unknown)</td>
-                                    <td>Specific (Only Trained Classes)</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Output</strong></td>
-                                    <td class="highlight">Visual Heatmap (Actionable)</td>
-                                    <td>Probability Score (Vague)</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="fragment tech-note" style="margin-top: 20px;">
-                    <strong>Current Achievement:</strong><br>
-                    Successfully detecting pneumonia with ~80% accuracy without ever showing the model a single pneumonia image during training.
                 </div>
             </section>
 

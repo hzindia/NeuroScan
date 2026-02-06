@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroScan Pro Presentation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/black.min.css" id="theme">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/monokai.min.css">
+    <style>
+        .reveal h1, .reveal h2, .reveal h3 { text-transform: none; }
+        .reveal section img { background: none; border: none; box-shadow: none; }
+        .highlight { color: #42affa; font-weight: bold; }
+        .cols { display: flex; justify-content: space-between; align-items: center; }
+        .col { flex: 1; padding: 10px; }
+        .small-text { font-size: 0.6em; }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <section>
+                <h1>🩻 NeuroScan Pro</h1>
+                <h3>Multi-Model Anomaly Detection in Medical Imaging</h3>
+                <p>Advanced Unsupervised Pathology Detection using <br> <span class="highlight">VAE, GAN, and Vision Transformers</span></p>
+                <p><small>Created by [Your Name]</small></p>
+            </section>
+
+            <section>
+                <h2>❓ The Challenge</h2>
+                <div class="cols">
+                    <div class="col">
+                        <ul>
+                            <li class="fragment"><strong>Data Scarcity:</strong> "Normal" medical data is abundant; "Disease" data is rare and expensive to label.</li>
+                            <li class="fragment"><strong>The "Black Swan" Failure:</strong> Supervised models (Classifiers) cannot detect <em>new</em> or <em>unknown</em> diseases they haven't been trained on.</li>
+                            <li class="fragment"><strong>Lack of Explainability:</strong> Traditional AI gives a score ("98% Risk") but doesn't tell doctors <em>where</em> to look.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>💡 The Solution: Unsupervised Learning</h2>
+                <p>Instead of learning "What is Pneumonia?", we learn <span class="highlight">"What is Healthy?"</span></p>
+                <ul>
+                    <li class="fragment"><strong>Step 1:</strong> Train purely on healthy anatomy (One-Class Classification).</li>
+                    <li class="fragment"><strong>Step 2:</strong> The model learns to reconstruct healthy lungs perfectly.</li>
+                    <li class="fragment"><strong>Step 3:</strong> When it sees a disease, it <em>fails</em> to reconstruct it.</li>
+                    <li class="fragment"><strong>Result:</strong> The "Reconstruction Error" highlights the tumor/infection automatically.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>🏗️ System Architecture</h2>
+                <div style="background-color: white; padding: 20px; border-radius: 10px;">
+                    <svg viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="50" y="100" width="100" height="100" fill="#ff7f50" rx="10"/>
+                        <text x="100" y="155" text-anchor="middle" fill="white" font-weight="bold">Input X-Ray</text>
+                        
+                        <path d="M 160 150 L 240 150" stroke="black" stroke-width="4" marker-end="url(#arrow)"/>
+                        
+                        <rect x="250" y="50" width="300" height="200" fill="#42affa" rx="10"/>
+                        <text x="400" y="80" text-anchor="middle" fill="white" font-weight="bold">AI Core (VAE / GAN / ViT)</text>
+                        <text x="400" y="120" text-anchor="middle" fill="white" font-size="14">Encodes to Latent Space</text>
+                        <text x="400" y="150" text-anchor="middle" fill="white" font-size="14">↓</text>
+                        <text x="400" y="180" text-anchor="middle" fill="white" font-size="14">Reconstructs Healthy Tissue</text>
+
+                        <path d="M 560 150 L 640 150" stroke="black" stroke-width="4" marker-end="url(#arrow)"/>
+
+                        <rect x="650" y="100" width="100" height="100" fill="#2ecc71" rx="10"/>
+                        <text x="700" y="155" text-anchor="middle" fill="white" font-weight="bold">Output</text>
+                    </svg>
+                </div>
+                <p class="small-text">Input (Diseased) → Model (Confused) → Output (Healthy-ish) → Difference Map (Lesion)</p>
+            </section>
+
+            <section>
+                <h2>🧠 Three Architectures Compared</h2>
+                <table style="font-size: 0.6em;">
+                    <thead>
+                        <tr>
+                            <th>Model</th>
+                            <th>Mechanism</th>
+                            <th>Pros</th>
+                            <th>Cons</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="highlight">VAE</td>
+                            <td>Probabilistic Compression (Gaussian Latent Space)</td>
+                            <td>Smooth, stable training. Reliable baselines.</td>
+                            <td>Blurry reconstructions.</td>
+                        </tr>
+                        <tr>
+                            <td class="highlight">GAN</td>
+                            <td>Adversarial Game (Generator vs Discriminator)</td>
+                            <td>Sharp, realistic details. High contrast.</td>
+                            <td>Unstable training (Mode Collapse).</td>
+                        </tr>
+                        <tr>
+                            <td class="highlight">ViT</td>
+                            <td>Self-Attention (16x16 Patches)</td>
+                            <td>Global context awareness. Modern approach.</td>
+                            <td>Data hungry; blocky artifacts on small datasets.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section>
+                <h2>🛠️ Tech Stack</h2>
+                <div class="cols">
+                    <div class="col">
+                        <h3>Core</h3>
+                        <ul>
+                            <li>Python 3.8+</li>
+                            <li>PyTorch (Deep Learning)</li>
+                            <li>TorchVision</li>
+                        </ul>
+                    </div>
+                    <div class="col">
+                        <h3>Interface</h3>
+                        <ul>
+                            <li>Streamlit (UI Dashboard)</li>
+                            <li>Matplotlib (Heatmaps)</li>
+                            <li>Pandas (Metrics Logging)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>🌟 Key Features</h2>
+                <ul>
+                    <li class="fragment"><strong>🏆 Live Leaderboard:</strong> Tracks Accuracy, F1-Score, and Params in real-time.</li>
+                    <li class="fragment"><strong>🔎 Visual Diagnostics:</strong> Side-by-side comparison of "Normal" vs "Pneumonia" reconstructions.</li>
+                    <li class="fragment"><strong>📈 Log-Scale Training:</strong> Visualize convergence of different architectures (GAN loss vs VAE loss) on one graph.</li>
+                    <li class="fragment"><strong>🧪 Manual Testing:</strong> Load pre-trained weights without retraining.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>🚀 Impact & Results</h2>
+                <div class="cols">
+                    <div class="col">
+                        <h4 class="highlight">Zero-Shot Detection</h4>
+                        <p class="small-text">Can detect Pneumonia, COVID, or Tumors without ever training on them.</p>
+                    </div>
+                    <div class="col">
+                        <h4 class="highlight">Data Privacy</h4>
+                        <p class="small-text">Models train only on "Healthy" data, reducing privacy risks.</p>
+                    </div>
+                </div>
+                <br>
+                <p><strong>Current Metric:</strong> ~80% Anomaly Detection Accuracy (depending on thresholding logic).</p>
+            </section>
+
+            <section>
+                <h1>Thank You!</h1>
+                <p>Questions?</p>
+                <p><small>Check out the code on GitHub: <a href="https://github.com/hzindia/NeuroScan">github.com/hzindia/NeuroScan</a></small></p>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/highlight/highlight.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            plugins: [ RevealHighlight ]
+        });
+    </script>
+</body>
+</html>

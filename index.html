@@ -103,18 +103,29 @@
                             <tbody>
                                 <tr>
                                     <td><strong>Data Req</strong></td>
-                                    <td class="highlight">Healthy Data Only (Easy)</td>
-                                    <td>Labeled Disease Data (Hard)</td>
+                                    <td class="highlight">Only healthy scans needed</td>
+                                    <td>Requires expensive expert labeling</td>
+                                </tr>
+
+                                <tr>
+                                    <td><strong>Bias Risk</strong></td>
+                                    <td class="highlight">Lower</td>
+                                    <td>High (depends on labeled classes)</td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Detection</strong></td>
-                                    <td class="highlight">Universal (Known & Unknown)</td>
-                                    <td>Specific (Only Trained Classes)</td>
+                                    <td><strong>Detection Capability</strong></td>
+                                    <td class="highlight">Can detect unknown diseases</td>
+                                    <td>Cannot detect unseen patterns</td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Output</strong></td>
-                                    <td class="highlight">Visual Heatmap (Actionable)</td>
-                                    <td>Probability Score (Vague)</td>
+                                    <td><strong>Explainability</strong></td>
+                                    <td class="highlight">Heatmaps show where anomaly exists</td>
+                                    <td>Only probability score</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Clinical Trust</strong></td>
+                                    <td class="highlight">Easier for radiologists to interpret</td>
+                                    <td>Harder without visual cues</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -123,36 +134,7 @@
                 
             </section>
             
-            <section>
-                <h2>🚀 Project Impact</h2>
-                
-                <div class="fragment" style="
-                    background: linear-gradient(135deg, rgba(66, 175, 250, 0.2) 0%, rgba(30, 30, 30, 0.8) 100%);
-                    border: 2px solid #42affa;
-                    border-radius: 20px;
-                    padding: 30px;
-                    margin: 20px auto;
-                    box-shadow: 0 0 30px rgba(66, 175, 250, 0.3);
-                    text-align: center;
-                ">
-                    <h3 style="color: #42affa; margin-bottom: 10px; font-size: 1.2em; text-transform: uppercase; letter-spacing: 3px;">Current Breakthrough</h3>
-                    
-                    <div style="font-size: 4em; font-weight: 800; color: #fff; line-height: 1;">
-                        ~40% <span style="font-size: 0.4em; color: #aaa; vertical-align: middle;">Accuracy</span>
-                    </div>
-                    
-                    <p style="font-size: 1.1em; color: #eee; margin-top: 15px; font-weight: 300;">
-                        Achieved on <strong>Pneumonia Detection</strong> without <em>ever</em> showing the model a single disease image during training even with small architectures and minimal trainable parameters.
-                    </p>
-                    <p style="font-size: 1.1em; color: #eee; margin-top: 15px; font-weight: 300;">
-                        Our preliminary results validate this methodology as a <strong>robust</strong>, automated framework for accurate chest X-ray anomaly detection, effectively identifying <em>infections</em> and <em>tumors</em> with high sensitivity to support <strong>clinical decision-making</strong>.
-                        
-                    </p>                    
-                    <div style="margin-top: 15px;">
-                        <span style="background: #42affa; color: #000; padding: 5px 15px; border-radius: 15px; font-size: 0.6em; font-weight: bold;">ZERO-SHOT LEARNING</span>
-                    </div>
-                </div>
-            </section>
+            
             
             <section>
                 <h2>🏗️ System Architecture</h2>
@@ -222,6 +204,36 @@
                 </div>
             </section>
 
+<section>
+                <h2>🚀 Project Impact</h2>
+                
+                <div class="fragment" style="
+                    background: linear-gradient(135deg, rgba(66, 175, 250, 0.2) 0%, rgba(30, 30, 30, 0.8) 100%);
+                    border: 2px solid #42affa;
+                    border-radius: 20px;
+                    padding: 30px;
+                    margin: 20px auto;
+                    box-shadow: 0 0 30px rgba(66, 175, 250, 0.3);
+                    text-align: center;
+                ">
+                    <h3 style="color: #42affa; margin-bottom: 10px; font-size: 1.2em; text-transform: uppercase; letter-spacing: 3px;">Current Breakthrough</h3>
+                    
+                    <div style="font-size: 4em; font-weight: 800; color: #fff; line-height: 1;">
+                        ~40% <span style="font-size: 0.4em; color: #aaa; vertical-align: middle;">Accuracy</span>
+                    </div>
+                    
+                    <p style="font-size: 1.1em; color: #eee; margin-top: 15px; font-weight: 300;">
+                        Achieved on <strong>Pneumonia Detection</strong> without <em>ever</em> showing the model a single disease image during training even with small architectures and minimal trainable parameters.
+                    </p>
+                    <p style="font-size: 1.1em; color: #eee; margin-top: 15px; font-weight: 300;">
+                        Our preliminary results validate this methodology as a <strong>robust</strong>, automated framework for accurate chest X-ray anomaly detection, effectively identifying <em>infections</em> and <em>tumors</em> with high sensitivity to support <strong>clinical decision-making</strong>.
+                        
+                    </p>                    
+                    <div style="margin-top: 15px;">
+                        <span style="background: #42affa; color: #000; padding: 5px 15px; border-radius: 15px; font-size: 0.6em; font-weight: bold;">ZERO-SHOT LEARNING</span>
+                    </div>
+                </div>
+            </section>
             <section>
                 <h1>Thank You</h1>
                 <p>Bringing Explainable, Generative AI to Healthcare.</p>

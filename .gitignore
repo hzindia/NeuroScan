@@ -2,3 +2,5 @@ chest_xray/
 data/
 saved_models/
 venv/
+node_modules/
+__pycache__/

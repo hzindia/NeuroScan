@@ -32,7 +32,7 @@ from prepare import (
 # ===========================================================================
 LATENT_DIM = 128
 LEARNING_RATE = 1e-3
-KL_WEIGHT = 1.0           # Beta-VAE weight on KL divergence term
+KL_WEIGHT = 0.5           # Beta-VAE weight on KL divergence term
 WEIGHT_DECAY = 0.0         # L2 regularization
 
 

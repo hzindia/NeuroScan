@@ -1,0 +1,6 @@
+# Autoresearch artifacts
+saved_models/
+results.tsv
+run.log
+*.log
+__pycache__/

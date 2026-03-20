@@ -1,0 +1,6 @@
+============================================================
+NeuroScan Autoresearch — VAE Experiment
+============================================================
+[prepare] Train loader: 1341 NORMAL images, batch_size=8
+Model parameters: 7,084,929
+Epoch   1 | loss: 2984.0294 | remaining: 717s
